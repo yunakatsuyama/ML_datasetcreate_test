@@ -146,8 +146,9 @@ class EAGridRegridder:
         # EAGrid conservative
         # =============================
         # emission_grid must be prepared same as before
-        self.prepare_eagrid_grid()
         self.build_eagrid_geometry(self.lat_min, self.lat_max, self.lon_min, self.lon_max)
+        self.prepare_eagrid_grid()
+        
         
         grid_in_ea = {
                 "lon": self.lon_e_center,
@@ -225,7 +226,7 @@ class EAGridRegridder:
             lat_e_edges[-1] + 2 * dlat_e
         )
     
-    def centers_to_edges(arr):
+    def centers_to_edges(self, arr):
         d = np.diff(arr)
         edges = np.empty(len(arr) + 1)
         edges[1:-1] = arr[:-1] + d / 2
@@ -233,7 +234,7 @@ class EAGridRegridder:
         edges[-1] = arr[-1] + d[-1] / 2
         return edges
     
-    def eagrid_latlon_array(lat_range,lon_range):  # lon_range = [lon_min, lon_max], lat_range = [lat_min, lat_max]
+    def eagrid_latlon_array(self, lat_range,lon_range):  # lon_range = [lon_min, lon_max], lat_range = [lat_min, lat_max]
      
         lat_range = np.array(lat_range)
         lon_range  = np.array(lon_range)

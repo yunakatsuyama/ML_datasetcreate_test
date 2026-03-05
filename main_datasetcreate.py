@@ -10,7 +10,9 @@ ds_eagrid = xr.open_dataset("Emission_grid_all.nc")
 path2cams = "CAMS-GLOB-ANT_Glb_0.1x0.1_anthro_nox_v6.2_yearly_2010.nc"
 camsds = xr.open_dataset(path2cams)
 cams_extract = CAMSExtractor(camsds) 
-cams_lon_array, cams_lat_array, cams_emission = cams_extract.extract_window()  # WHAT WILL BE HERE ?????)
+
+target_lon, target_lat = 135.5009 ,34.6913
+cams_lon_array, cams_lat_array, cams_emission = cams_extract.extract_window(lon_center=target_lon, lat_center=target_lat, pix = 5)  # WHAT WILL BE HERE ?????)
 
 
 # -------------------------
